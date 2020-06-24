@@ -109,17 +109,16 @@ export default {
       room: "",
       username: "",
       my_msg: "",
-      UGmethods: {},
       chat: [],
       file: "",
       filer: "",
       contentTypeText: "text",
-      chatter: false,
-      fiii: false
+      chatter: false
     };
   },
   methods: {
     scroller() {
+      // this is to auto scroll down to the last message
       const objDiv = this.$refs["msgBody"];
       var counter = 0;
       var id = setInterval(scrolling, 500);
@@ -179,8 +178,6 @@ export default {
     uploadContent(e) {
       this.file = this.$refs.file.files[0];
       this.filer = URL.createObjectURL(this.file);
-      console.log(this.filer);
-      console.log(this.file);
     },
     textSender() {
       this.contentTypeText = "text";
@@ -237,6 +234,7 @@ export default {
         const data = response.data.response;
         this.chat = data;
         this.chatter = true;
+
         // to scroll the div(chat message) to the bottom
         this.scroller();
       })
@@ -244,7 +242,8 @@ export default {
         console.log(error.response);
       });
 
-    const mdt = ["chat1", "chat2"];
+    const mdt = ["chat1", "chat2"]; // I can loop through this room and subscribe to them
+
     this.sockets.roomer.subscribe(this.room.userGroupId, data => {
       if (data.createdBy.username != this.username) {
         this.chat.push(data);
@@ -253,7 +252,7 @@ export default {
     });
   },
   sockets: {
-    roomer: {}
+    roomer: {} //room channel;
   }
 };
 </script>

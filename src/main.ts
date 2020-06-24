@@ -9,8 +9,7 @@ import VueSocketIO from "vue-socket.io";
 
 Vue.config.productionTip = false;
 const url_loc = "http://localhost:4890";
-const url =
-  "https://futurex-notification.herokuapp.com/api";
+const url = "https://futurex-notification.herokuapp.com/api";
 
 Vue.use(VueSession);
 Vue.use(
